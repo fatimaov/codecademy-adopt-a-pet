@@ -26,6 +26,8 @@ const Search = () => {
       pathname: '/search',
       search: `?${query}`
     })
+
+    searchInputRef.current.value = '';
   };
 
   return (
