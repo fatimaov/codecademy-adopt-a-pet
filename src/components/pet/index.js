@@ -13,7 +13,7 @@ const Pet = ({ animal }) => {
             <img
               className="pet-image"
               src={
-                animal.photos[0]?.medium || 'https://static-assets.codecademy.com/Dog_image.png'
+                animal.photos[0]?.medium || '/missing-animal.png'
               }
               alt=""
             />
@@ -22,7 +22,7 @@ const Pet = ({ animal }) => {
         <h3>{animal.name}</h3>
         <p>Breed: {animal.breeds.primary}</p>
         <p>Color: {animal.colors.primary}</p>
-        <p>Gender: {animal.gender}</p>
+        <p>Date of Birth: {animal.date_of_birth}</p>
       </article>
     </a>
   );

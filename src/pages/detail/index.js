@@ -11,12 +11,12 @@ const PetDetailsPage = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const { id } = useParams();
+  const { type, id } = useParams();
 
   useEffect(() => {
     async function getPetsData() {
       try {
-        const petsData = await getPetDetails(id);
+        const petsData = await getPetDetails(type, id);
         setData(petsData);
         setError(false);
       } catch (e) {
@@ -26,7 +26,7 @@ const PetDetailsPage = () => {
     }
 
     getPetsData();
-  }, [id]);
+  }, [type, id]);
 
   return (
     <div>
@@ -40,7 +40,7 @@ const PetDetailsPage = () => {
       ) : (
         <main>
           <Hero
-            image={data.photos[1]?.full || 'https://i.imgur.com/aEcJUFK.png'}
+            image={data.photos[0]?.full || 'missing-animal.png'}
             displayText={`Meet ${data.name}`}
           />
           <div className="pet-detail">
@@ -48,7 +48,7 @@ const PetDetailsPage = () => {
               <img
                 className="pet-image"
                 src={
-                  data.photos[0]?.medium || 'https://i.imgur.com/aEcJUFK.png'
+                  data.photos[0]?.medium || 'missing-animal.png'
                 }
                 alt=""
               />
@@ -57,7 +57,7 @@ const PetDetailsPage = () => {
               <h1>{data.name}</h1>
               <h3>Breed: {data.breeds.primary}</h3>
               <p>Color: {data.colors.primary || 'Unknown'}</p>
-              <p>Gender: {data.gender}</p>
+              <p>Date of Birth: {data.date_of_birth}</p>
               <h3>Description</h3>
               <p>{data.description}</p>
             </div>
